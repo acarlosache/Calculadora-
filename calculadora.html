@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora Simples</title>
+    <style>
+
+        body  { 
+            font-family: Arial, sans-serif; 
+            background: #131212; 
+            background-image: url('imagem\ ludica.jpg');
+            background-size: cover;      /* Faz a imagem cobrir toda a tela */
+            background-repeat: no-repeat; /* Evita repetição da imagem */
+            background-position: center;  /* Centraliza a imagem */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Garante que ocupe toda a altura da tela */
+        }
+        .calculadora {
+            background: #070707;
+            padding: 20px;
+            border-radius: 8px;
+            width: 220px;
+            margin: 50px auto;
+            box-shadow: 0 0 10px #faf9f9;
+        }
+        input[type="text"] {
+            width: 94%;
+            height: 40px;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 3px;
+            background-color: #eee;
+        }
+        .botoes {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+        }
+        .botoes button {
+            width: 48px;
+            height: 48px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 4px;
+            background: #eee;
+            cursor: pointer;
+        }
+        .botoes button.operador { background: #f9a825; color: #ffffff; }
+        .botoes button.igual { background: #43a047; color: #fff; grid-column: 4; grid-row: 4 / span 2;}
+        .botoes button.limpar { background: #fafafa; color: #0a0a0a; grid-column: 1 / span 4;}
+        
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <input type="text" id="display" disabled>
+        <div class="botoes">
+            <button onclick="adicionar('7')">7</button>
+            <button onclick="adicionar('8')">8</button>
+            <button onclick="adicionar('9')">9</button>
+            <button class="operador" onclick="adicionar('/')">/</button>
+            
+            <button onclick="adicionar('4')">4</button>
+            <button onclick="adicionar('5')">5</button>
+            <button onclick="adicionar('6')">6</button>
+            <button class="operador" onclick="adicionar('*')">*</button>
+            
+            <button onclick="adicionar('1')">1</button>
+            <button onclick="adicionar('2')">2</button>
+            <button onclick="adicionar('3')">3</button>
+            <button class="operador" onclick="adicionar('-')">-</button>
+            
+            <button onclick="adicionar('0')">0</button>
+            <button onclick="adicionar('.')">.</button>
+            <button class="igual" onclick="calcular()">=</button>
+            <button class="operador" onclick="adicionar('+')">+</button>
+            
+            <button class="limpar" onclick="limpar()">C</button>
+        </div>
+    </div>
+    <script>
+        function adicionar(valor) {
+            document.getElementById('display').value += valor;
+        }
+        function limpar() {
+            document.getElementById('display').value = '';
+        }
+        function calcular() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch {
+                document.getElementById('display').value = 'Erro';
+            }
+        }
+    </script>
+</body>
+</html>
